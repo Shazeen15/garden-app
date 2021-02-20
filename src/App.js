@@ -1,24 +1,19 @@
-import logo from './logo.svg';
-import './App.css';
+import { useReducer } from "react";
+
+import { plantReducer, initialValues } from "./utils/reducer/plantReducer";
+
+//context
+import PlantContext from "./context/PlantContext";
+//component
+import PlantCard from "./component/PlantCard";
+import "./App.css";
 
 function App() {
+  const [plant, dispatch] = useReducer(plantReducer, initialValues);
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <PlantContext.Provider value={{ plant, dispatch }}>
+      <PlantCard />
+    </PlantContext.Provider>
   );
 }
 
