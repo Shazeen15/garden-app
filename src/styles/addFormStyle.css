@@ -1,0 +1,14 @@
+form {
+  display: flex;
+}
+
+.label {
+  display: flex;
+  flex-direction: column;
+  /* padding: 50px; */
+}
+
+.input {
+  display: flex;
+  flex-direction: column;
+}

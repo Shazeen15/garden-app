@@ -1,13 +1,16 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import "./index.css";
+import { BrowserRouter as Router } from "react-router-dom";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
-
+//styles
+import "./index.css";
+import "./styles/addFormStyle.css";
+import "./styles/navStyle.css";
 ReactDOM.render(
-  <React.StrictMode>
+  <Router>
     <App />
-  </React.StrictMode>,
+  </Router>,
   document.getElementById("root")
 );
 
