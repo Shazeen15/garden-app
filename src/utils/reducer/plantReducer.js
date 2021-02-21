@@ -14,7 +14,7 @@ export const plantInitialValues = {
   fetching: "",
 };
 
-export const plantReducer = (state, action) => {
+export const plantReducer = (state = plantInitialValues, action) => {
   switch (action.type) {
     case ADD_PLANTS:
       return {

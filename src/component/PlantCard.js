@@ -1,16 +1,21 @@
-import React, { useContext } from "react";
-import PlantContext from "./../context/PlantContext";
+import React from "react";
+import { connect } from "react-redux";
 import Plant from "./Plant";
 
-function PlantCard() {
-  const { plant } = useContext(PlantContext);
+function PlantCard(props) {
+  const { plants } = props;
   return (
     <>
-      {plant.plants.map((plant) => {
+      {plants.map((plant) => {
         return <Plant key={plant.id} plant={plant} />;
       })}
     </>
   );
 }
+const mapStateToProps = (state) => {
+  return {
+    plants: state.plants.plants,
+  };
+};
 
-export default PlantCard;
+export default connect(mapStateToProps)(PlantCard);

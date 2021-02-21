@@ -8,7 +8,7 @@ export const userInitialValue = {
   fetching: "",
 };
 
-export const userReducer = (state, action) => {
+export const userReducer = (state = userInitialValue, action) => {
   switch (action.type) {
     case SET_USER:
       return {

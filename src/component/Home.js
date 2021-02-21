@@ -1,17 +1,15 @@
-import React, { useContext } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
-import UserContext from "./../context/UserContext";
 import { setUser } from "./../utils/actions/userAction";
-
-function Home() {
-  const { user, userDispatch } = useContext(UserContext);
-
+import { connect } from "react-redux";
+function Home(props) {
+  const { user, setUser } = props;
   const changeUser = () => {
-    userDispatch(setUser("jamile"));
+    setUser("Jamile");
   };
   return (
     <section className="home">
-      <h1>Welcome {user.user.userName}</h1>
+      <h1>Welcome {user.userName}</h1>
       <Link to="/plant">View All Your Plants</Link>
       <Link to="/add-plant">Add A New Plant</Link>
       <button onClick={changeUser}>Change User</button>
@@ -19,4 +17,10 @@ function Home() {
   );
 }
 
-export default Home;
+const mapStateToProps = (state) => {
+  return {
+    user: state.user.user,
+  };
+};
+
+export default connect(mapStateToProps, { setUser })(Home);

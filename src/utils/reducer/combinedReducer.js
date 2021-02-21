@@ -4,7 +4,7 @@ import { userReducer } from "./userReducer";
 
 const combinedReducer = combineReducers({
   user: userReducer,
-  plant: plantReducer,
+  plants: plantReducer,
 });
 
 export default combinedReducer;
