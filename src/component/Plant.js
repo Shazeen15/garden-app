@@ -5,6 +5,7 @@ function Plant({ plant }) {
     <>
       <h1>{plant.name}</h1>
       <p>{plant.sun}</p>
+      <img src={plant.plantImg} alt="plant" />
     </>
   );
 }
