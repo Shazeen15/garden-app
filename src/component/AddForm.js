@@ -1,25 +1,77 @@
-import React from "react";
+import React, { useState } from "react";
+import { connect } from "react-redux";
+import { addPlant } from "./../utils/actions/plantAction";
 
-function AddForm() {
+const initialFormValue = {
+  id: Date.now(),
+  name: "plant1",
+  species: "",
+  sun: "",
+  // img: "",
+};
+
+function AddForm(props) {
+  const { addPlant } = props;
+  const [newPlant, setNewPlant] = useState(initialFormValue);
+
+  const handleChange = (e) => {
+    const value = e.target.value;
+    console.log(e.target.value);
+    setNewPlant({
+      ...newPlant,
+      [e.target.name]: value,
+    });
+  };
+
+  const submitNewPlant = (e) => {
+    e.preventDefault();
+    addPlant(newPlant);
+  };
+
   return (
     <>
-      <form>
-        <div className="label">
-          <label htmlFor="name">Name: </label>
-          <label htmlFor="species">Species: </label>
-          <label htmlFor="sun">Sun: </label>
-          <label htmlFor="img">Select image:</label>
-        </div>
-        <div className="input">
-          <input type="text" name="name" id="name" />
-          <input type="text" name="species" id="species" />
-          <input type="text" name="sun" id="sun" />
-          <input type="file" id="img" name="img" accept="image/*" />
-        </div>
+      <form onSubmit={submitNewPlant}>
+        <label htmlFor="name">Name: </label>
+        <input
+          onChange={handleChange}
+          type="text"
+          name="name"
+          id="name"
+          value={initialFormValue.name}
+          placeholder="name of plants"
+        />
+        <br />
+        <label htmlFor="species">Species: </label>
+        <input
+          onChange={handleChange}
+          type="text"
+          name="species"
+          id="species"
+          value={initialFormValue.species}
+          placeholder="species of plants"
+        />
+        <br />
+        <label htmlFor="sun">Sun: </label>
+        <input
+          onChange={handleChange}
+          type="text"
+          name="sun"
+          id="sun"
+          value={initialFormValue.sun}
+          placeholder="how much sun plant needs"
+        />
+        {/* <label htmlFor="img">Select image:</label>
+          <input
+            type="file"
+            id="img"
+            name="img"
+            value={initialFormValue.img}
+            onChange={handleChange}
+          /> */}
         <button>Submit</button>
       </form>
     </>
   );
 }
 
-export default AddForm;
+export default connect(null, { addPlant })(AddForm);

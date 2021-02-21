@@ -7,7 +7,7 @@ function PlantCard(props) {
   return (
     <>
       {plants.map((plant) => {
-        return <Plant key={plant.id} plant={plant} />;
+        return <Plant key={plant.name} plant={plant} />;
       })}
     </>
   );
